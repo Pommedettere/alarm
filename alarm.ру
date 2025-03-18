@@ -1,0 +1,26 @@
+import time
+from datetime import datetime
+import winsound  # Встроенная библиотека для воспроизведения звука на Windows
+
+def set_alarm(alarm_time):
+    """Функция для установки будильника."""
+    while True:
+        # Получаем текущее время
+        current_time = datetime.now().strftime("%H:%M:%S")
+        
+        # Проверяем, совпадает ли текущее время с временем будильника
+        if current_time == alarm_time:
+            print("Время просыпаться!")
+            # Воспроизводим звуковой сигнал (1000 Гц, 2000 мс)
+            winsound.Beep(1000, 2000)  # Бип на 1000 Гц в течение 2 секунд
+            break
+        
+        # Ждем 1 секунду перед следующей проверкой
+        time.sleep(1)
+
+if __name__ == "__main__":
+    # Указываем время будильника
+    alarm_time = input("Введите время будильника в формате HH:MM:SS: ")
+    
+    print(f"Будильник установлен на {alarm_time}")
+    set_alarm(alarm_time)
